@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing With Chart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Poppins", "ui-sans-serif", "system-ui"],
+              headline: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+            },
+            colors: {
+              panel: "#09090b",
+              card: "#0d0d12",
+              borderline: "rgba(255,255,255,0.08)",
+              violetBrand: "#8b1cf9",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      body {
+        background-color: #07070a;
+        color: #f5f5f5;
+      }
+
+      @keyframes textLoadIn {
+        0% {
+          opacity: 0;
+          transform: translateY(14px);
+          filter: blur(6px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+
+      .text-load {
+        opacity: 0;
+        will-change: transform, opacity, filter;
+        animation: textLoadIn 680ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .quote-roller {
+        display: block;
+        min-height: 1.6rem;
+        transition: opacity 420ms ease, transform 420ms ease;
+      }
+
+      .quote-hidden {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      .quote-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .dot-grid {
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.12) 1.1px,
+          transparent 1.1px
+        );
+        background-size: 14px 14px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .text-load {
+          opacity: 1;
+          animation: none;
+          transform: none;
+          filter: none;
+        }
+
+        .quote-roller {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-display antialiased">
+    <main class="relative min-h-screen w-full overflow-hidden dot-grid">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_50%_at_50%_0%,rgba(139,28,249,0.16),transparent_70%)]"></div>
+
+      <div id="app"></div>
+    </main>
+
+    <script src="./components/ui/pricing-with-chart.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

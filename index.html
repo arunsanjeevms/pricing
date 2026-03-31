@@ -63,6 +63,23 @@
         animation: textLoadIn 680ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
+      .headline-rotator {
+        display: block;
+        min-height: clamp(3.9rem, 10vw, 6.4rem);
+        transition: opacity 480ms ease, transform 480ms ease;
+        will-change: transform, opacity;
+      }
+
+      .headline-hidden {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      .headline-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       .quote-roller {
         display: block;
         min-height: 1.6rem;
@@ -96,6 +113,10 @@
         }
 
         .quote-roller {
+          transition: none;
+        }
+
+        .headline-rotator {
           transition: none;
         }
       }

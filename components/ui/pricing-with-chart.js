@@ -23,6 +23,7 @@ const PACKAGE_CONTENT = {
     trendValues: [7, 10, 13, 16, 20, 24],
     channelLabels: ["Search", "WhatsApp", "Calls"],
     channelValues: [35, 45, 20],
+    demoUrl: "https://poorvi.triospark.in",
     accentHex: "#10b981",
     badgeClass: "border-emerald-400/40 bg-emerald-500/20 text-emerald-200",
     priceClass: "text-emerald-300",
@@ -54,6 +55,7 @@ const PACKAGE_CONTENT = {
     trendValues: [20, 27, 33, 42, 49, 57],
     channelLabels: ["Organic", "WhatsApp", "Referral"],
     channelValues: [40, 38, 22],
+    demoUrl: "https://zionhr.in",
     accentHex: "#0ea5e9",
     badgeClass: "border-sky-400/40 bg-sky-500/20 text-sky-200",
     priceClass: "text-sky-300",
@@ -85,6 +87,7 @@ const PACKAGE_CONTENT = {
     trendValues: [36, 45, 58, 69, 81, 96],
     channelLabels: ["Organic", "Paid", "Automation"],
     channelValues: [34, 29, 37],
+    demoUrl: "https://afdc.co.in",
     accentHex: "#d946ef",
     badgeClass: "border-fuchsia-400/40 bg-fuchsia-500/20 text-fuchsia-200",
     priceClass: "text-fuchsia-300",
@@ -104,6 +107,10 @@ const PACKAGE_CONTENT = {
       "Cart + Checkout Optimization (Conversion Flow)",
     ],
     features: [
+      "ERP Management",
+      "CRM Management",
+      "Inventory Management",
+      "Payroll Management",
       "Order & Inventory Management Dashboard",
       "Customer Data & Sales Tracking",
       "Performance Optimization (Fast Checkout Experience)",
@@ -115,6 +122,7 @@ const PACKAGE_CONTENT = {
     trendValues: [55, 73, 88, 112, 138, 166],
     channelLabels: ["Direct", "Search", "Ads"],
     channelValues: [31, 36, 33],
+    demoUrl: "https://www.natrilnaturals.com",
     accentHex: "#f43f5e",
     badgeClass: "border-rose-400/40 bg-rose-500/20 text-rose-200",
     priceClass: "text-rose-300",
@@ -140,7 +148,11 @@ function renderPricingWithChart(mountNode) {
           Trio's Spark IT Solutions
         </p>
         <h1 class="mt-4 font-headline text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-          Pricing that Scales with You
+          <span
+            data-headline-rotator
+            data-no-text-load
+            class="headline-rotator headline-visible"
+          ></span>
         </h1>
         <p class="mt-4 text-sm text-zinc-400 sm:text-base">
           Choose your package with confidence using clear deliverables and projected growth signals.
@@ -180,7 +192,9 @@ function renderPricingWithChart(mountNode) {
             <a
               data-primary-cta
               href="#"
-              class="inline-flex h-11 w-full items-center justify-center rounded-md text-sm font-semibold transition"
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex min-h-11 w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-semibold leading-tight transition"
             >
               Start Package
             </a>
@@ -219,7 +233,7 @@ function renderPricingWithChart(mountNode) {
             <ul data-feature-list class="mt-4 space-y-3 text-sm text-zinc-300"></ul>
 
             <div class="mt-8">
-              <a href="./demo.html" class="inline-flex h-11 w-full items-center justify-center rounded-md border border-borderline px-3 text-sm font-semibold text-white transition hover:border-zinc-500">
+              <a data-demo-cta href="#" target="_blank" rel="noreferrer" class="inline-flex h-11 w-full items-center justify-center rounded-md border border-borderline px-3 text-sm font-semibold text-white transition hover:border-zinc-500">
                 Demo Page Link
               </a>
             </div>
@@ -269,6 +283,7 @@ function renderPricingWithChart(mountNode) {
     </div>
   `;
 
+  initHeadlineRotator(mountNode);
   initRollingQuotes(mountNode);
   initPackageExperience(mountNode);
   initTextLoadAnimations(mountNode);
@@ -309,6 +324,7 @@ function initPackageExperience(rootNode) {
     const trendCaptionNode = rootNode.querySelector("[data-trend-caption]");
     const channelCaptionNode = rootNode.querySelector("[data-channel-caption]");
     const primaryCtaNode = rootNode.querySelector("[data-primary-cta]");
+    const demoCtaNode = rootNode.querySelector("[data-demo-cta]");
     const quickListNode = rootNode.querySelector("[data-quick-list]");
     const featureListNode = rootNode.querySelector("[data-feature-list]");
 
@@ -324,7 +340,16 @@ function initPackageExperience(rootNode) {
     channelCaptionNode.textContent = packageContent.channelCaption;
 
     primaryCtaNode.textContent = `Start ${packageContent.pillLabel}`;
-    primaryCtaNode.className = `inline-flex h-11 w-full items-center justify-center rounded-md text-sm font-semibold transition ${packageContent.primaryButtonClass}`;
+    primaryCtaNode.className = `inline-flex min-h-11 w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-semibold leading-tight transition ${packageContent.primaryButtonClass}`;
+    primaryCtaNode.href = `https://wa.me/919492633000?text=${encodeURIComponent(`Hi, I am interested in ${packageContent.name} (${packageContent.price}). Please share more details.`)}`;
+    primaryCtaNode.target = "_blank";
+    primaryCtaNode.rel = "noreferrer";
+
+    if (demoCtaNode) {
+      demoCtaNode.href = packageContent.demoUrl || "#";
+      demoCtaNode.target = "_blank";
+      demoCtaNode.rel = "noreferrer";
+    }
 
     quickListNode.innerHTML = packageContent.quickHighlights
       .map(
@@ -517,6 +542,44 @@ function hexToRgba(hexColor, alpha) {
 
 function buildChartPalette(hexColor) {
   return [hexToRgba(hexColor, 0.92), hexToRgba(hexColor, 0.72), hexToRgba(hexColor, 0.52)];
+}
+
+function initHeadlineRotator(rootNode) {
+  const headlineNode = rootNode.querySelector("[data-headline-rotator]");
+  if (!headlineNode) return;
+
+  const headlines = [
+    "Your Business Deserves More Than Just a Website",
+    "Turn Every Visitor Into a High-Intent Lead",
+    "Be the Brand Customers Find First and Trust Fast",
+    "Invest Once. Generate Enquiries Every Single Day",
+  ];
+
+  let headlineIndex = 0;
+  headlineNode.textContent = headlines[headlineIndex];
+
+  if (rootNode.__headlineIntervalId) {
+    window.clearInterval(rootNode.__headlineIntervalId);
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const fadeDurationMs = 480;
+  const headlineIntervalMs = 4200;
+
+  rootNode.__headlineIntervalId = window.setInterval(() => {
+    headlineNode.classList.remove("headline-visible");
+    headlineNode.classList.add("headline-hidden");
+
+    window.setTimeout(() => {
+      headlineIndex = (headlineIndex + 1) % headlines.length;
+      headlineNode.textContent = headlines[headlineIndex];
+      headlineNode.classList.remove("headline-hidden");
+      headlineNode.classList.add("headline-visible");
+    }, fadeDurationMs);
+  }, headlineIntervalMs);
 }
 
 function initRollingQuotes(rootNode) {

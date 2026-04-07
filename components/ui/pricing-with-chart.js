@@ -132,7 +132,7 @@ const PACKAGE_CONTENT = {
 };
 
 const PILL_BASE_CLASS =
-  "inline-flex items-center justify-center rounded-full border px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.12em] transition";
+  "inline-flex w-full items-center justify-center rounded-full border px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.12em] transition sm:w-auto";
 const PILL_ACTIVE_CLASS =
   "border-violetBrand bg-violetBrand text-white shadow-[0_8px_24px_-12px_rgba(139,28,249,0.9)]";
 const PILL_INACTIVE_CLASS =
@@ -167,7 +167,7 @@ function renderPricingWithChart(mountNode) {
       </div>
 
       <section id="packageSelector" class="mx-auto mb-5 max-w-6xl px-1">
-        <div class="flex flex-wrap items-center justify-center gap-2">
+        <div class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:justify-center">
           <button type="button" data-package-pill="starter">Starter</button>
           <button type="button" data-package-pill="growth">Growth</button>
           <button type="button" data-package-pill="pro">Pro Business</button>
@@ -175,8 +175,8 @@ function renderPricingWithChart(mountNode) {
         </div>
       </section>
 
-      <section data-package-shell class="bg-panel grid overflow-hidden rounded-xl border border-borderline transition duration-200 ease-out sm:rounded-2xl md:grid-cols-6">
-        <div class="flex flex-col justify-between border-b border-borderline p-4 sm:p-6 md:col-span-2 md:border-r md:border-b-0">
+      <section data-package-shell class="bg-panel grid min-w-0 overflow-hidden rounded-xl border border-borderline transition duration-200 ease-out sm:rounded-2xl md:grid-cols-6">
+        <div class="flex min-w-0 flex-col justify-between border-b border-borderline p-4 sm:p-6 md:col-span-2 md:border-r md:border-b-0">
           <div class="space-y-4">
             <div>
               <div class="flex flex-wrap items-center gap-2">
@@ -194,7 +194,7 @@ function renderPricingWithChart(mountNode) {
               href="#"
               target="_blank"
               rel="noreferrer"
-              class="inline-flex min-h-11 w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-semibold leading-tight transition"
+              class="inline-flex min-h-11 w-full max-w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-semibold leading-tight break-words transition"
             >
               Start Package
             </a>
@@ -205,7 +205,7 @@ function renderPricingWithChart(mountNode) {
           </div>
         </div>
 
-        <div class="z-10 grid gap-6 p-4 sm:p-6 md:col-span-4 lg:grid-cols-2">
+        <div class="z-10 grid min-w-0 gap-6 p-4 sm:p-6 md:col-span-4 lg:grid-cols-2">
           <div class="space-y-4">
             <article class="rounded-xl border border-borderline bg-white/[0.02] p-3 shadow-[0_12px_30px_-24px_rgba(139,28,249,0.9)]">
               <header class="border-b border-borderline pb-3">
@@ -228,12 +228,12 @@ function renderPricingWithChart(mountNode) {
             </article>
           </div>
 
-          <div class="relative w-full">
+          <div class="relative w-full min-w-0">
             <p class="text-sm font-semibold text-white">Everything included in this package:</p>
             <ul data-feature-list class="mt-4 space-y-3 text-sm text-zinc-300 break-words"></ul>
 
             <div class="mt-8">
-              <a data-demo-cta href="#" target="_blank" rel="noreferrer" class="inline-flex h-11 w-full items-center justify-center rounded-md border border-borderline px-3 text-sm font-semibold text-white transition hover:border-zinc-500">
+              <a data-demo-cta href="#" target="_blank" rel="noreferrer" class="inline-flex h-11 w-full max-w-full items-center justify-center rounded-md border border-borderline px-3 text-center text-sm font-semibold leading-tight break-words text-white transition hover:border-zinc-500">
                 Demo Page Link
               </a>
             </div>
@@ -269,11 +269,11 @@ function renderPricingWithChart(mountNode) {
             <p class="mt-1 text-sm text-zinc-400">For quick support and consultation, reach us on WhatsApp or call directly.</p>
           </div>
           <div class="grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
-            <a href="https://wa.me/919492633000" target="_blank" rel="noreferrer" class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-500/15 px-3 text-center text-sm font-semibold leading-tight text-emerald-200 transition hover:bg-emerald-500/25">
+            <a href="https://wa.me/919492633000" target="_blank" rel="noreferrer" class="inline-flex h-11 w-full min-w-0 items-center justify-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-500/15 px-3 text-center text-sm font-semibold leading-tight break-words text-emerald-200 transition hover:bg-emerald-500/25">
               <i data-lucide="message-circle" class="h-4 w-4"></i>
               WhatsApp 9492633000
             </a>
-            <a href="tel:+919492633000" class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-sky-500/40 bg-sky-500/15 px-3 text-center text-sm font-semibold leading-tight text-sky-200 transition hover:bg-sky-500/25">
+            <a href="tel:+919492633000" class="inline-flex h-11 w-full min-w-0 items-center justify-center gap-2 rounded-md border border-sky-500/40 bg-sky-500/15 px-3 text-center text-sm font-semibold leading-tight break-words text-sky-200 transition hover:bg-sky-500/25">
               <i data-lucide="phone-call" class="h-4 w-4"></i>
               Call 9492633000
             </a>
@@ -340,7 +340,7 @@ function initPackageExperience(rootNode) {
     channelCaptionNode.textContent = packageContent.channelCaption;
 
     primaryCtaNode.textContent = `Start ${packageContent.pillLabel}`;
-    primaryCtaNode.className = `inline-flex min-h-11 w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-semibold leading-tight transition ${packageContent.primaryButtonClass}`;
+    primaryCtaNode.className = `inline-flex min-h-11 w-full max-w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-semibold leading-tight break-words transition ${packageContent.primaryButtonClass}`;
     primaryCtaNode.href = `https://wa.me/919492633000?text=${encodeURIComponent(`Hi, I am interested in ${packageContent.name} (${packageContent.price}). Please share more details.`)}`;
     primaryCtaNode.target = "_blank";
     primaryCtaNode.rel = "noreferrer";

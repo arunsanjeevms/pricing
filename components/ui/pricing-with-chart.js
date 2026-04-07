@@ -132,7 +132,7 @@ const PACKAGE_CONTENT = {
 };
 
 const PILL_BASE_CLASS =
-  "inline-flex items-center rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition";
+  "inline-flex items-center justify-center rounded-full border px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.12em] transition";
 const PILL_ACTIVE_CLASS =
   "border-violetBrand bg-violetBrand text-white shadow-[0_8px_24px_-12px_rgba(139,28,249,0.9)]";
 const PILL_INACTIVE_CLASS =
@@ -142,12 +142,12 @@ function renderPricingWithChart(mountNode) {
   if (!mountNode) return;
 
   mountNode.innerHTML = `
-    <div class="relative mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:py-14">
+    <div class="relative mx-auto w-full max-w-7xl px-3 py-8 sm:px-6 sm:py-10 lg:py-14">
       <div class="mx-auto mb-8 max-w-3xl text-center">
         <p class="inline-flex items-center rounded-full border border-violetBrand/40 bg-violetBrand/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-violet-200">
           Trio's Spark IT Solutions
         </p>
-        <h1 class="mt-4 font-headline text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+        <h1 class="mt-4 font-headline text-[clamp(1.85rem,8vw,3rem)] font-extrabold leading-tight tracking-tight text-white">
           <span
             data-headline-rotator
             data-no-text-load
@@ -166,7 +166,7 @@ function renderPricingWithChart(mountNode) {
         </div>
       </div>
 
-      <section id="packageSelector" class="mx-auto mb-5 max-w-6xl">
+      <section id="packageSelector" class="mx-auto mb-5 max-w-6xl px-1">
         <div class="flex flex-wrap items-center justify-center gap-2">
           <button type="button" data-package-pill="starter">Starter</button>
           <button type="button" data-package-pill="growth">Growth</button>
@@ -175,19 +175,19 @@ function renderPricingWithChart(mountNode) {
         </div>
       </section>
 
-      <section data-package-shell class="bg-panel grid overflow-hidden rounded-2xl border border-borderline transition duration-200 ease-out md:grid-cols-6">
-        <div class="flex flex-col justify-between border-b border-borderline p-6 md:col-span-2 md:border-r md:border-b-0">
+      <section data-package-shell class="bg-panel grid overflow-hidden rounded-xl border border-borderline transition duration-200 ease-out sm:rounded-2xl md:grid-cols-6">
+        <div class="flex flex-col justify-between border-b border-borderline p-4 sm:p-6 md:col-span-2 md:border-r md:border-b-0">
           <div class="space-y-4">
             <div>
               <div class="flex flex-wrap items-center gap-2">
-                <h2 data-plan-name class="text-2xl font-semibold text-white"></h2>
+                <h2 data-plan-name class="text-2xl font-semibold text-white break-words"></h2>
                 <span data-plan-badge class="inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]"></span>
               </div>
-              <span data-plan-price class="my-3 block text-4xl font-bold"></span>
-              <p data-plan-tagline class="text-sm text-zinc-400"></p>
+              <span data-plan-price class="my-3 block text-3xl font-bold sm:text-4xl"></span>
+              <p data-plan-tagline class="text-sm text-zinc-400 break-words"></p>
             </div>
 
-            <p data-plan-intro class="text-sm text-zinc-300"></p>
+            <p data-plan-intro class="text-sm text-zinc-300 break-words"></p>
 
             <a
               data-primary-cta
@@ -201,18 +201,18 @@ function renderPricingWithChart(mountNode) {
 
             <div class="my-2 h-px w-full bg-borderline"></div>
 
-            <ul data-quick-list class="space-y-3 text-sm text-zinc-300"></ul>
+            <ul data-quick-list class="space-y-3 text-sm text-zinc-300 break-words"></ul>
           </div>
         </div>
 
-        <div class="z-10 grid gap-6 p-6 md:col-span-4 lg:grid-cols-2">
+        <div class="z-10 grid gap-6 p-4 sm:p-6 md:col-span-4 lg:grid-cols-2">
           <div class="space-y-4">
             <article class="rounded-xl border border-borderline bg-white/[0.02] p-3 shadow-[0_12px_30px_-24px_rgba(139,28,249,0.9)]">
               <header class="border-b border-borderline pb-3">
                 <h3 class="text-lg font-semibold text-white">Lead Growth Projection</h3>
-                <p data-trend-caption class="text-xs text-zinc-400"></p>
+                <p data-trend-caption class="text-xs text-zinc-400 break-words"></p>
               </header>
-              <div class="h-36 pt-3">
+              <div class="h-44 pt-3 sm:h-36">
                 <canvas data-trend-chart class="h-full w-full"></canvas>
               </div>
             </article>
@@ -220,9 +220,9 @@ function renderPricingWithChart(mountNode) {
             <article class="rounded-xl border border-borderline bg-white/[0.02] p-3">
               <header class="border-b border-borderline pb-3">
                 <h3 class="text-lg font-semibold text-white">Channel Mix</h3>
-                <p data-channel-caption class="text-xs text-zinc-400"></p>
+                <p data-channel-caption class="text-xs text-zinc-400 break-words"></p>
               </header>
-              <div class="h-32 pt-3">
+              <div class="h-40 pt-3 sm:h-32">
                 <canvas data-channel-chart class="h-full w-full"></canvas>
               </div>
             </article>
@@ -230,7 +230,7 @@ function renderPricingWithChart(mountNode) {
 
           <div class="relative w-full">
             <p class="text-sm font-semibold text-white">Everything included in this package:</p>
-            <ul data-feature-list class="mt-4 space-y-3 text-sm text-zinc-300"></ul>
+            <ul data-feature-list class="mt-4 space-y-3 text-sm text-zinc-300 break-words"></ul>
 
             <div class="mt-8">
               <a data-demo-cta href="#" target="_blank" rel="noreferrer" class="inline-flex h-11 w-full items-center justify-center rounded-md border border-borderline px-3 text-sm font-semibold text-white transition hover:border-zinc-500">
@@ -240,40 +240,40 @@ function renderPricingWithChart(mountNode) {
 
             <div class="mt-5 rounded-lg border border-violetBrand/30 bg-violetBrand/10 p-3">
               <p class="text-xs font-semibold uppercase tracking-wide text-violet-200">Expected Outcome</p>
-              <p data-plan-outcome class="mt-1 text-sm text-violet-100"></p>
+              <p data-plan-outcome class="mt-1 text-sm text-violet-100 break-words"></p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="mt-6 rounded-2xl border border-violetBrand/30 bg-panel p-6">
+      <section class="mt-6 rounded-2xl border border-violetBrand/30 bg-panel p-4 sm:p-6">
         <div>
           <h3 class="text-xl font-semibold text-white">Growth Add-Ons (High Profit Zone)</h3>
         </div>
         <div class="mt-5 grid gap-3 md:grid-cols-2">
-          <div class="flex items-center justify-between rounded-lg border border-borderline bg-white/[0.02] p-4">
-            <p class="flex items-center gap-2 text-sm text-zinc-200"><i data-lucide="sparkles" class="h-4 w-4 text-violet-300"></i>Domain + Hosting (Cloud Deployment)</p>
-            <span class="text-sm font-semibold text-violet-200">&#8377;3,500/year</span>
+          <div class="flex flex-col gap-3 rounded-lg border border-borderline bg-white/[0.02] p-4 sm:flex-row sm:items-center sm:justify-between">
+            <p class="flex min-w-0 items-center gap-2 text-sm text-zinc-200"><i data-lucide="sparkles" class="h-4 w-4 shrink-0 text-violet-300"></i><span class="break-words">Domain + Hosting (Cloud Deployment)</span></p>
+            <span class="shrink-0 text-sm font-semibold text-violet-200 sm:text-right">&#8377;3,500/year</span>
           </div>
-          <div class="flex items-center justify-between rounded-lg border border-borderline bg-white/[0.02] p-4">
-            <p class="flex items-center gap-2 text-sm text-zinc-200"><i data-lucide="sparkles" class="h-4 w-4 text-violet-300"></i>Google Business Profile Optimization</p>
-            <span class="text-sm font-semibold text-violet-200">&#8377;1,500</span>
+          <div class="flex flex-col gap-3 rounded-lg border border-borderline bg-white/[0.02] p-4 sm:flex-row sm:items-center sm:justify-between">
+            <p class="flex min-w-0 items-center gap-2 text-sm text-zinc-200"><i data-lucide="sparkles" class="h-4 w-4 shrink-0 text-violet-300"></i><span class="break-words">Google Business Profile Optimization</span></p>
+            <span class="shrink-0 text-sm font-semibold text-violet-200 sm:text-right">&#8377;1,500</span>
           </div>
         </div>
       </section>
 
-      <section class="mt-6 rounded-2xl border border-borderline bg-panel p-6">
+      <section class="mt-6 rounded-2xl border border-borderline bg-panel p-4 sm:p-6">
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h3 class="text-xl font-semibold text-white">Contact Us</h3>
             <p class="mt-1 text-sm text-zinc-400">For quick support and consultation, reach us on WhatsApp or call directly.</p>
           </div>
           <div class="grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
-            <a href="https://wa.me/919492633000" target="_blank" rel="noreferrer" class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-500/15 px-3 text-sm font-semibold text-emerald-200 transition hover:bg-emerald-500/25">
+            <a href="https://wa.me/919492633000" target="_blank" rel="noreferrer" class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-500/15 px-3 text-center text-sm font-semibold leading-tight text-emerald-200 transition hover:bg-emerald-500/25">
               <i data-lucide="message-circle" class="h-4 w-4"></i>
               WhatsApp 9492633000
             </a>
-            <a href="tel:+919492633000" class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-sky-500/40 bg-sky-500/15 px-3 text-sm font-semibold text-sky-200 transition hover:bg-sky-500/25">
+            <a href="tel:+919492633000" class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-sky-500/40 bg-sky-500/15 px-3 text-center text-sm font-semibold leading-tight text-sky-200 transition hover:bg-sky-500/25">
               <i data-lucide="phone-call" class="h-4 w-4"></i>
               Call 9492633000
             </a>
@@ -332,7 +332,7 @@ function initPackageExperience(rootNode) {
     planBadgeNode.textContent = packageContent.badge;
     planBadgeNode.className = `inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${packageContent.badgeClass}`;
     planPriceNode.textContent = packageContent.price;
-    planPriceNode.className = `my-3 block text-4xl font-bold ${packageContent.priceClass}`;
+    planPriceNode.className = `my-3 block text-3xl font-bold sm:text-4xl ${packageContent.priceClass}`;
     planTaglineNode.textContent = packageContent.tagline;
     planIntroNode.textContent = packageContent.intro;
     planOutcomeNode.textContent = packageContent.outcome;
@@ -354,14 +354,14 @@ function initPackageExperience(rootNode) {
     quickListNode.innerHTML = packageContent.quickHighlights
       .map(
         (item) =>
-          `<li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 ${packageContent.iconClass}"></i>${item}</li>`,
+          `<li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 ${packageContent.iconClass}"></i><span class="min-w-0 break-words">${item}</span></li>`,
       )
       .join("");
 
     featureListNode.innerHTML = packageContent.features
       .map(
         (item) =>
-          `<li class="flex items-start gap-2"><i data-lucide="check-circle" class="mt-0.5 h-4 w-4 ${packageContent.iconClass}"></i>${item}</li>`,
+          `<li class="flex items-start gap-2"><i data-lucide="check-circle" class="mt-0.5 h-4 w-4 shrink-0 ${packageContent.iconClass}"></i><span class="min-w-0 break-words">${item}</span></li>`,
       )
       .join("");
 
